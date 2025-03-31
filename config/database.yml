@@ -12,8 +12,8 @@ default: &default
 
 development:
   <<: *default
-  database: custome_login_dev_db
-  username: custome_login 
+  database: custom_login_dev_db
+  username: custom_login 
   password: 1234
   host: localhost 
   port: 5432 
@@ -23,7 +23,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: custome_login_test_db 
+  database: custom_login_test_db 
 
 
 # SQLite3 write its data on the local filesystem, as such it requires
