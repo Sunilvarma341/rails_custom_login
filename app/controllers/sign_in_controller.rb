@@ -15,4 +15,9 @@ class SignInController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    logout()
+    redirect_to sign_in_path,  notice: "Logged out successfully"
+  end
 end
