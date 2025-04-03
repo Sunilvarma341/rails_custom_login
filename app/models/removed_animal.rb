@@ -1,0 +1,2 @@
+class RemovedAnimal < ApplicationRecord
+end

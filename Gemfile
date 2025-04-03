@@ -66,3 +66,7 @@ end
 gem "guard", "~> 2.19", ">= 2.19.1"
 # LiveReload guard allows to automatically reload your browser when 'view' files are modified.
 gem "guard-livereload", "~> 2.5", ">= 2.5.2"
+
+
+# this gem is used for the db trigger managing
+gem "fx", "~> 0.9.0"
