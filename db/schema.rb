@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_30_150538) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_02_143246) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "removed_animals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -23,4 +35,47 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_30_150538) do
     t.datetime "reset_password_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
+  create_function :log_new_animal_record_in_removed_animals_db, sql_definition: <<-'SQL'
+      CREATE OR REPLACE FUNCTION public.log_new_animal_record_in_removed_animals_db()
+       RETURNS trigger
+       LANGUAGE plpgsql
+      AS $function$ 
+      BEGIN
+       INSERT INTO removed_animals (id,name,created_at,updated_at)
+       VALUES (NEW.id, NEW.name, NEW.created_at,NEW.updated_at); 
+       return NEW; 
+      END;
+      $function$
+  SQL
+  create_function :log_new_animal, sql_definition: <<-'SQL'
+      CREATE OR REPLACE FUNCTION public.log_new_animal()
+       RETURNS trigger
+       LANGUAGE plpgsql
+      AS $function$
+      BEGIN
+        INSERT INTO removed_animals (name,created_at , updated_at)
+        VALUES (NEW.name, NOW(), NOW() );
+        RETURN NEW;
+      END;
+      $function$
+  SQL
+  create_function :delete_same_animal_name, sql_definition: <<-'SQL'
+      CREATE OR REPLACE FUNCTION public.delete_same_animal_name()
+       RETURNS trigger
+       LANGUAGE plpgsql
+      AS $function$ 
+      BEGIN
+          DELETE FROM removed_animals   WHERE name = OLD.name;
+          RETURN OLD; 
+      END; 
+      $function$
+  SQL
+
+
+  create_trigger :save_deleted_same_animal_name, sql_definition: <<-SQL
+      CREATE TRIGGER save_deleted_same_animal_name BEFORE DELETE ON public.animals FOR EACH ROW EXECUTE FUNCTION delete_same_animal_name()
+  SQL
+  create_trigger :save_inserted_animal_changes, sql_definition: <<-SQL
+      CREATE TRIGGER save_inserted_animal_changes AFTER INSERT ON public.animals FOR EACH ROW EXECUTE FUNCTION log_new_animal()
+  SQL
 end

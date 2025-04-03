@@ -1,0 +1,16 @@
+
+
+<%= form_with  url: reset_password_update_path , method: :patch do  |f| %>
+    <%= f.hidden_field :token ,  value: params[:token] %>
+  <div>
+    <%=  f.label :password,   "New password"%> 
+    <%=  f.password_field :password   %> 
+  </div>
+  <div>
+    <%=  f.label :password_confirmation,   "Confirm password"%> 
+    <%=  f.password_field :password_confirmation   %> 
+  </div>
+  <div>
+    <%=  f.submit "Reset Password" %> 
+  </div>
+<% end %>
