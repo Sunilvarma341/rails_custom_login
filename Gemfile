@@ -70,3 +70,10 @@ gem "guard-livereload", "~> 2.5", ">= 2.5.2"
 
 # this gem is used for the db trigger managing
 gem "fx", "~> 0.9.0"
+
+gem "sidekiq", "~> 8.0"
+
+gem "sidekiq-cron", "~> 2.2"
+
+gem "dotenv-rails", "~> 3.1", ">= 3.1.7"
+gem "solargraph", "~> 0.53.4"

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  name: MyString
+  start_time: 2025-04-09 22:28:07
+  end_time: 2025-04-09 22:28:07
+  description: MyString
+  is_recurring: false
+
+two:
+  id: 
+  name: MyString
+  start_time: 2025-04-09 22:28:07
+  end_time: 2025-04-09 22:28:07
+  description: MyString
+  is_recurring: false

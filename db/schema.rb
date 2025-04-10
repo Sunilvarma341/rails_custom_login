@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_02_143246) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_09_170849) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "animals", force: :cascade do |t|
@@ -22,6 +23,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_02_143246) do
 
   create_table "removed_animals", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedule_meetings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.string "description", default: ""
+    t.boolean "is_recurring", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

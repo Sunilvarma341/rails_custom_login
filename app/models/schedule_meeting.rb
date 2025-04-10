@@ -1,0 +1,2 @@
+class ScheduleMeeting < ApplicationRecord
+end

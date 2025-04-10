@@ -93,4 +93,7 @@ Rails.application.configure do
   open_timeout: 5,
   read_timeout: 5
 }
+  REDIS_URL = "redis://localhost:6370/1"
+
+  config.active_job.queue_adapter = :async
 end
