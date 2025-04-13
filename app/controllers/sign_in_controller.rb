@@ -9,7 +9,6 @@ class SignInController < ApplicationController
     user =  User.find_by(email: email)
     if user && user.authenticate(password)
       login(user)
-      Example::CronJob.perform_later
     redirect_to root_path, notice: "Logged In successfully"
     else
       flash.now[:alert] = "Invalid email or password"

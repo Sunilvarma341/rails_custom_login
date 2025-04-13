@@ -1,12 +1,6 @@
-:schedule:
-  example_cron_job: 
-    name: 'Hard worker - every 1min'
-    namespace: 'Foo'
-    cron: '*/1 * * * *'
-    class: "Example::CronJob"
-  
-  send_reminder_every_minute: 
-    cron: "*/1 * * * *"
-    class: "HelloJob" 
-    args: ["user@example.com"]
-    description: "Send reminder emails every minute"
+# config/sidekiq.yml
+:concurrency: 5  # Correct format - no brackets
+:queues:
+  - default
+  - mailers
+  - cron

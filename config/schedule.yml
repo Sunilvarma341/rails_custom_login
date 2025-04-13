@@ -1,0 +1,10 @@
+reccuring_meetings_job:
+  cron: "*/30 * * * *"
+  class: ReccuringMeetingsJob
+  queue: cron
+
+send_reminder_every_minute: 
+    cron: "*/1 * * * *"
+    class: "HelloJob" 
+    args: ["user@example.com"]
+    description: "Send reminder emails every minute"

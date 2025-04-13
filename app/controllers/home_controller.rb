@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   end
 
   def async_action
-    HelloJob.perform_at(10.seconds.from_now)
+    # HelloJob.perform_at(10.seconds.from_now)
+    ReccuringMeetingsJob.perform_async()
   end
 end
