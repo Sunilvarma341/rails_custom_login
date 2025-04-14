@@ -81,3 +81,5 @@ gem "solargraph", "~> 0.53.4"
 
 # color for logging
 gem "colorize", "~> 1.1"
+
+gem "pry", "~> 0.15.2"
