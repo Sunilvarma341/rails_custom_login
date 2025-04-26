@@ -14,4 +14,7 @@ class HomeController < ApplicationController
    Log.green("file expande path #{File.expand_path("../Gemfile", __dir__)
    }")
   end
+
+  def request_logs_information
+  end
 end

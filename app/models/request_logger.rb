@@ -1,0 +1,2 @@
+class RequestLogger < ApplicationRecord
+end

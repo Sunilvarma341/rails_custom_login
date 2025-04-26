@@ -28,5 +28,10 @@ module RailsCustomLogin
     config.active_record.default_timezone  = :local
 
     config.autoload_paths +=  Dir[Rails.root.join("lib")]
+    config.autoload_paths << "#{Rails.root}/app/middleware"
+
+    # rgistaring the middleware
+    require "#{Rails.root}/app/middleware/request_log"
+    config.middleware.insert_after ActionDispatch::RequestId, RequestLog
   end
 end
