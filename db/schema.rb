@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_09_170849) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_24_173829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -23,6 +23,19 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_09_170849) do
 
   create_table "removed_animals", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "request_loggers", force: :cascade do |t|
+    t.string "path"
+    t.string "method"
+    t.text "params"
+    t.string "ip"
+    t.string "user_agent"
+    t.string "user_id"
+    t.integer "status"
+    t.float "response_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
