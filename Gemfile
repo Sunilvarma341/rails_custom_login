@@ -74,7 +74,7 @@ gem "fx", "~> 0.9.0"
 gem "sidekiq", "~> 7.0"
 
 # gem "sidekiq-cron", "~> 2.2"
-gem "sidekiq-scheduler", "~> 5.0"
+gem "sidekiq-scheduler", "~> 6.0"
 
 gem "dotenv-rails", "~> 3.1", ">= 3.1.7"
 gem "solargraph", "~> 0.53.4"
