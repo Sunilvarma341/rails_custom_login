@@ -77,7 +77,7 @@ gem "sidekiq", "~> 7.0"
 gem "sidekiq-scheduler", "~> 5.0"
 
 gem "dotenv-rails", "~> 3.1", ">= 3.1.7"
-gem "solargraph", "~> 0.53.4"
+gem "solargraph", "~> 0.55.3"
 
 # color for logging
 gem "colorize", "~> 1.1"
